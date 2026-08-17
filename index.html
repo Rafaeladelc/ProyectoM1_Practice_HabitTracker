@@ -6,16 +6,16 @@
   <title>Mi Rastreador de Hábitos</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
+<body role="application">
 
   <!-- Header: Título y navegación de mes -->
   <header class="encabezado">
     <h1 class="titulo-principal">Mi rastreador de hábitos</h1>
-    <nav class="navegacion-mes" aria-label="Navegación de meses">
-      <button type="button" id="btn-mes-anterior" class="boton-mes">← Anterior</button>
-      <span id="mes-actual" class="mes-actual">Agosto 2026</span>
-      <button type="button" id="btn-mes-siguiente" class="boton-mes">Siguiente →</button>
-    </nav>
+      <nav class="navegacion-mes" aria-label="Navegación de meses">
+        <button type="button" id="btn-mes-anterior" class="boton-mes" aria-label="Ir al mes anterior">← Anterior</button>
+        <span id="mes-actual" class="mes-actual">Agosto 2026</span>
+        <button type="button" id="btn-mes-siguiente" class="boton-mes" aria-label="Ir al mes siguiente">Siguiente →</button>
+      </nav>
   </header>
 
   <!-- Main: Contenido principal -->
