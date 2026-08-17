@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Rastreador de Hábitos</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Header: Título y navegación de mes -->
+  <header class="encabezado">
+    <h1 class="titulo-principal">Mi rastreador de hábitos</h1>
+    <nav class="navegacion-mes" aria-label="Navegación de meses">
+      <button type="button" id="btn-mes-anterior" class="boton-mes">← Anterior</button>
+      <span id="mes-actual" class="mes-actual">Agosto 2026</span>
+      <button type="button" id="btn-mes-siguiente" class="boton-mes">Siguiente →</button>
+    </nav>
+  </header>
+
+  <!-- Main: Contenido principal -->
+  <main class="contenido-principal">
+
+    <!-- Leyenda de categorías -->
+    <section class="leyenda-categorias" aria-label="Categorías de hábitos">
+      <div class="categoria-item">
+        <span class="categoria-punto cat-salud"></span>
+        <span>Salud</span>
+      </div>
+      <div class="categoria-item">
+        <span class="categoria-punto cat-estudio"></span>
+        <span>Estudio</span>
+      </div>
+      <div class="categoria-item">
+        <span class="categoria-punto cat-trabajo"></span>
+        <span>Trabajo</span>
+      </div>
+      <div class="categoria-item">
+        <span class="categoria-punto cat-entretenimiento"></span>
+        <span>Entretenimiento</span>
+      </div>
+      <div class="categoria-item">
+        <span class="categoria-punto cat-familia"></span>
+        <span>Familia</span>
+      </div>
+    </section>
+
+    <!-- Contenedor del calendario -->
+    <section class="contenedor-calendario" aria-label="Calendario del mes">
+      <div id="calendario" class="calendario-grid">
+        <!-- Se llena dinámicamente con JavaScript -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="pie-pagina">
+    <p>&copy; 2026 Daily Habit Tracker. Desarrollado por Rafaela Martinez</p>
+  </footer>
+
+  <!-- Script -->
+  <script src="js/script.js"></script>
+</body>
+</html>

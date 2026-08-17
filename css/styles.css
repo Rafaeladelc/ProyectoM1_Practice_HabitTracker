@@ -1,0 +1,497 @@
+/* ============================================
+   Daily Habit Tracker · css/styles.css
+   Diseño visual del rastreador de hábitos
+   ============================================ */
+
+/* 1. Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 2. Variables globales */
+:root {
+  --color-oscuro: #1a1a2e;         /* Azul marino: header y footer */
+  --color-claro: #ffffff;          /* Blanco: texto sobre oscuro */
+  --color-fondo: #f5f5f5;          /* Gris muy claro: fondo de página */
+  --color-borde: #ddd;             /* Gris neutro: bordes */
+  --radio-borde: 8px;              /* Radio de bordes redondeados */
+  
+  /* Categorías */
+  --cat-salud: #10b981;            /* Verde: Salud */
+  --cat-estudio: #3b82f6;          /* Azul: Estudio */
+  --cat-trabajo: #8b5cf6;          /* Púrpura: Trabajo */
+  --cat-entretenimiento: #f59e0b;  /* Ámbar: Entretenimiento */
+  --cat-familia: #ec4899;          /* Rosa: Familia */
+  
+  /* Acentos */
+  --acento: #7c3aed;               /* Morado: hoy y énfasis */
+}
+
+/* Base del documento */
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-fondo);
+  color: var(--color-oscuro);
+}
+
+/* 3. Header */
+.encabezado {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  background-color: var(--color-oscuro);
+  color: var(--color-claro);
+  gap: 2rem;
+}
+
+.titulo-principal {
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+.navegacion-mes {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.boton-mes {
+  background: transparent;
+  border: 0.5px solid rgba(255, 255, 255, 0.3);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radio-borde);
+  color: var(--color-claro);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+
+.boton-mes:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.boton-mes:focus-visible {
+  outline: 2px solid var(--acento);
+  outline-offset: 2px;
+}
+
+.mes-actual {
+  min-width: 140px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+/* 4. Main */
+.contenido-principal {
+  flex: 1;
+  padding: 2rem 2rem;
+}
+
+/* 5. Leyenda de categorías */
+.leyenda-categorias {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: white;
+  border: 0.5px solid var(--color-borde);
+  border-radius: var(--radio-borde);
+}
+
+.categoria-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.categoria-punto {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.cat-salud {
+  background-color: var(--cat-salud);
+}
+
+.cat-estudio {
+  background-color: var(--cat-estudio);
+}
+
+.cat-trabajo {
+  background-color: var(--cat-trabajo);
+}
+
+.cat-entretenimiento {
+  background-color: var(--cat-entretenimiento);
+}
+
+.cat-familia {
+  background-color: var(--cat-familia);
+}
+
+/* 6. Contenedor y grid del calendario */
+.contenedor-calendario {
+  background: white;
+  border: 0.5px solid var(--color-borde);
+  border-radius: var(--radio-borde);
+  padding: 1rem;
+}
+
+.calendario-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.75rem;
+}
+
+/* 7. Footer */
+.pie-pagina {
+  padding: 1.5rem 2rem;
+  text-align: center;
+  font-size: 0.85rem;
+  background-color: var(--color-oscuro);
+  color: var(--color-claro);
+}
+
+/* 8. Responsividad básica */
+@media (max-width: 768px) {
+  .encabezado {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .titulo-principal {
+    font-size: 1.5rem;
+  }
+  
+  .contenido-principal {
+    padding: 1rem;
+  }
+  
+  .leyenda-categorias {
+    gap: 1rem;
+  }
+  
+  .categoria-item {
+    font-size: 0.85rem;
+  }
+}
+/* Encabezado de días de la semana */
+.encabezado-dia {
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--color-oscuro);
+  opacity: 0.6;
+  padding: 0.75rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 0.5px solid var(--color-borde);
+}
+
+/* Celda de día */
+.celda-dia {
+  background: white;
+  border: 0.5px solid var(--color-borde);
+  border-radius: var(--radio-borde);
+  padding: 0.75rem;
+  min-height: 160px;
+  display: flex;
+  flex-direction: column;
+  cursor: default;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.celda-dia.hoy {
+  border: 2px solid var(--acento);
+  background: rgba(124, 58, 237, 0.02);
+  box-shadow: 0 0 0 1px var(--acento);
+}
+
+.celda-dia.mes-anterior,
+.celda-dia.mes-siguiente {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* Número del día */
+.numero-dia {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--color-oscuro);
+  margin-bottom: 0.5rem;
+}
+
+/* Lista de hábitos dentro de la celda */
+.lista-habitos {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Fila de cada hábito (con checkbox) */
+.fila-habito {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  padding: 0.25rem 0;
+  transition: opacity 0.15s ease;
+}
+
+.fila-habito:hover {
+  opacity: 0.8;
+}
+
+.celda-dia.mes-anterior .fila-habito,
+.celda-dia.mes-siguiente .fila-habito {
+  cursor: not-allowed;
+}
+
+/* Checkbox */
+.checkbox {
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--color-borde);
+  border-radius: 2px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  font-size: 10px;
+  font-weight: bold;
+  color: white;
+  transition: background 0.15s ease, border 0.15s ease;
+}
+
+.fila-habito:hover .checkbox {
+  border-color: var(--acento);
+}
+
+.fila-habito.completado .checkbox {
+  background: var(--cat-salud);
+  border-color: var(--cat-salud);
+}
+
+/* Nombre del hábito */
+.nombre-habito {
+  color: var(--color-oscuro);
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: color 0.15s ease;
+}
+
+.fila-habito.completado .nombre-habito {
+  color: var(--acento);
+  font-weight: 600;
+}
+
+/* Punto de categoría */
+.punto-categoria {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Estadística (abajo de la celda) */
+.estadistica {
+  border-top: 0.5px solid var(--color-borde);
+  padding-top: 0.5rem;
+  font-size: 0.75rem;
+  color: #999;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .celda-dia {
+    min-height: 120px;
+    padding: 0.5rem;
+  }
+  
+  .numero-dia {
+    font-size: 0.9rem;
+  }
+  
+  .lista-habitos {
+    gap: 0.25rem;
+  }
+  
+  .fila-habito {
+    font-size: 0.75rem;
+  }
+}
+
+/* Encabezado de días de la semana */
+.encabezado-dia {
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--color-oscuro);
+  opacity: 0.6;
+  padding: 0.75rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 0.5px solid var(--color-borde);
+}
+ 
+/* Celda de día */
+.celda-dia {
+  background: white;
+  border: 0.5px solid var(--color-borde);
+  border-radius: var(--radio-borde);
+  padding: 0.75rem;
+  min-height: 160px;
+  display: flex;
+  flex-direction: column;
+  cursor: default;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+ 
+.celda-dia.hoy {
+  border: 2px solid var(--acento);
+  background: rgba(124, 58, 237, 0.02);
+  box-shadow: 0 0 0 1px var(--acento);
+}
+ 
+.celda-dia.mes-anterior,
+.celda-dia.mes-siguiente {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+ 
+/* Número del día */
+.numero-dia {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--color-oscuro);
+  margin-bottom: 0.5rem;
+}
+ 
+/* Lista de hábitos dentro de la celda */
+.lista-habitos {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1;
+  overflow: hidden;
+}
+ 
+/* Fila de cada hábito (con checkbox) */
+.fila-habito {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  padding: 0.25rem 0;
+  transition: opacity 0.15s ease;
+}
+ 
+.fila-habito:hover {
+  opacity: 0.8;
+}
+ 
+.celda-dia.mes-anterior .fila-habito,
+.celda-dia.mes-siguiente .fila-habito {
+  cursor: not-allowed;
+}
+ 
+/* Checkbox */
+.checkbox {
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--color-borde);
+  border-radius: 2px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  font-size: 10px;
+  font-weight: bold;
+  color: white;
+  transition: background 0.15s ease, border 0.15s ease;
+}
+ 
+.fila-habito:hover .checkbox {
+  border-color: var(--acento);
+}
+ 
+.fila-habito.completado .checkbox {
+  background: var(--cat-salud);
+  border-color: var(--cat-salud);
+}
+ 
+/* Nombre del hábito */
+.nombre-habito {
+  color: var(--color-oscuro);
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: color 0.15s ease;
+}
+ 
+.fila-habito.completado .nombre-habito {
+  color: var(--acento);
+  font-weight: 600;
+}
+ 
+/* Punto de categoría */
+.punto-categoria {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+ 
+/* Estadística (abajo de la celda) */
+.estadistica {
+  border-top: 0.5px solid var(--color-borde);
+  padding-top: 0.5rem;
+  font-size: 0.75rem;
+  color: #999;
+  text-align: center;
+  font-weight: 500;
+}
+ 
+/* Responsividad */
+@media (max-width: 768px) {
+  .celda-dia {
+    min-height: 120px;
+    padding: 0.5rem;
+  }
+  
+  .numero-dia {
+    font-size: 0.9rem;
+  }
+  
+  .lista-habitos {
+    gap: 0.25rem;
+  }
+  
+  .fila-habito {
+    font-size: 0.75rem;
+  }
+}
+ 
