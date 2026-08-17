@@ -1,6 +1,6 @@
 /* ============================================
    Daily Habit Tracker · js/script.js
-   Lógica de generación del calendario
+   Lógica completa con localStorage
    ============================================ */
 
 /* ---- Datos: hábitos y completados ---- */
@@ -13,12 +13,22 @@ const habitos = [
 
 const completados = {
   // Formato: "YYYY-MM-DD": [habitId1, habitId2, ...]
-  "2026-08-16": [1, 3],
-  "2026-08-15": [1, 2, 3],
-  "2026-08-14": [2, 3],
 };
 
 let fechaActual = new Date(2026, 7, 16); // agosto 16
+
+/* ---- LocalStorage ---- */
+
+function guardarEnLS() {
+  localStorage.setItem("completados", JSON.stringify(completados));
+}
+
+function cargarDelLS() {
+  const datosGuardados = localStorage.getItem("completados");
+  if (datosGuardados) {
+    Object.assign(completados, JSON.parse(datosGuardados));
+  }
+}
 
 /* ---- Funciones auxiliares ---- */
 
@@ -149,6 +159,9 @@ function alternarHabito(dateStr, habitoId) {
     completados[dateStr].splice(indice, 1);
   }
   
+  // Guardar en localStorage
+  guardarEnLS();
+  
   // Redibujar
   renderizarCalendario();
 }
@@ -170,4 +183,5 @@ document.getElementById("btn-mes-siguiente").addEventListener("click", mesSiguie
 
 /* ---- Inicialización ---- */
 
+cargarDelLS();
 renderizarCalendario();
